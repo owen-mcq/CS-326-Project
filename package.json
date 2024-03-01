@@ -13,17 +13,17 @@
   "homepage": "",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/owen-mcq/CS-326-Project"
   },
   "bugs": "",
   "keywords": [],
   "author": {
-    "name": "",
+    "name": "NVIDIA to the moon",
     "email": "",
     "url": ""
   },
   "contributors": [
-
+    "Owen McQuaid omcquaid@umass.edu owen-mcq", "Rishi Patel rypatel@umass.edu RishiPatel22", "Chandan Marle cmarle@umass.edu Chandan-Marle", "Theresa Foley tfoley@umass.edu tfoleyumass"
   ],
   "scripts": {
     "dev": "",
