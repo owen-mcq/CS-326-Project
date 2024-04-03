@@ -1,1 +1,47 @@
+/* Basic text styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: white; 
+    color: black; 
+}
 
+/* Horizontal Navbar */
+nav ul {
+    list-style: none; /* Removes bullet points */
+    margin: 0;
+    padding: 0;
+    background-color: #e8f5e9; /*light green*/
+    overflow: hidden;
+}
+
+nav ul li {
+    float: right; /* Aligns Items */
+}
+
+nav ul li a {
+    display: block;
+    color: red;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none; /*Remove underlines */
+}
+
+nav ul li a:hover {
+    background-color: #4CAF50; 
+    color: white; 
+}
+
+/* Specific styling for the #overview section */
+#overview {
+    background-color: #e8f5e9; /* Light green background */
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Button styling */
+.button {
+    background-color: #4CAF50; 
+    color: white;
+    padding: 10px;
+    border: none;
+}
