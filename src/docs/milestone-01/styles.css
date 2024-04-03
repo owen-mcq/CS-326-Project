@@ -1,11 +1,9 @@
-/* Basic text styles */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Arial';
     background-color: white; 
     color: black; 
 }
 
-/* Horizontal Navbar */
 nav ul {
     list-style: none; /* Removes bullet points */
     margin: 0;
@@ -31,9 +29,7 @@ nav ul li a:hover {
     color: white; 
 }
 
-/* Specific styling for the #overview section */
 #overview {
-    background-color: #e8f5e9; /* Light green background */
     padding: 20px;
     margin-bottom: 20px;
 }
@@ -45,3 +41,48 @@ nav ul li a:hover {
     padding: 10px;
     border: none;
 }
+
+
+#team ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0;
+    list-style: none;
+}
+
+#team li {
+    flex-basis: 22%; 
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); 
+    border-radius: 5%; 
+}
+
+#team img {
+    width: 200px; 
+    height: 200px; 
+    border-radius: 50%;
+}
+
+
+#team p {
+    text-align: center; /* Centers the paragraph text */
+}
+
+section {
+    background-color: white;
+    padding: 20px; 
+    margin: 20px 0; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .5); /* Shadow */
+    border-radius: 10px; 
+    background-color: #e8f5e9; 
+}
+
+h2 {
+    color: green; 
+
+}
+
