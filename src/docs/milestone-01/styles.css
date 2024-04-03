@@ -15,7 +15,7 @@ nav ul {
 }
 
 nav ul li {
-    float: right; /* Aligns Items */
+    float: left; /* Aligns Items */
 }
 
 nav ul li a {
