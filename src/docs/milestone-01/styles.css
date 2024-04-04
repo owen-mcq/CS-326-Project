@@ -10,10 +10,12 @@ nav ul {
     padding: 0;
     background-color: #e8f5e9; /*light green*/
     overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 nav ul li {
-    float: left; /* Aligns Items */
+    float: none; 
 }
 
 nav ul li a {
@@ -22,6 +24,7 @@ nav ul li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none; /*Remove underlines */
+    border-radius: 5px;
 }
 
 nav ul li a:hover {
@@ -69,7 +72,7 @@ nav ul li a:hover {
 
 
 #team p {
-    text-align: center; /* Centers the paragraph text */
+    text-align: center;
 }
 
 section {
@@ -88,6 +91,8 @@ h2 {
 
 h1{
     font-family:'Courier New', Courier, monospace;
+    color: green; 
+    text-align: center; 
 }
 
 .bio {
