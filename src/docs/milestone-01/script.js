@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Get all profile images
-    const profileImages = document.querySelectorAll("#team li img");
+    // Get all profiles
+    const profiles = document.querySelectorAll("#team li");
     
-    // Add click event listener to each profile image
-    profileImages.forEach(image => {
-        image.addEventListener("click", function() {
-            // Toggle visibility of bio
-            const bio = this.nextElementSibling;
+    // Add event listener to each profile
+    profiles.forEach(profile => {
+        profile.addEventListener("click", function() {
+            // Find bio section and toggle it to show
+            const bio = this.querySelector(".bio");
             bio.classList.toggle("show");
         });
     });
