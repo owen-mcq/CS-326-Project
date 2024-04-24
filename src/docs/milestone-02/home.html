@@ -1,23 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Team 27 Milestone-02</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <header>
-        <nav>
-            <div id="dropDownNavBar">
-            <ul>
-                <div class=""></div>
-                <li><a href="index.html">Overview</a></li>
-                <li><a href="home.html">Home</li>
-            </ul>
+      <nav>
+        <div class="dropdownNavBar">
+          <button class="dropBtn"></button>
+          <ul class="links">
+              <li><a href="index.html">Overview</a></li>
+              <li><a href="home.html">Home</a></li>
+          </ul>
+          <div class="search">
+            <input type="text" placeholder="Search!" />
+          </div>
         </div>
-        </nav>
+      </nav>
     </header>
-   
-</body>
+    <main>
+      <section class="mainStock">
+        <h2>Rotation of stock charts</h2>
+      </section>
+      <section class="watchList">
+        <h2>User watch list</h2>
+      </section>
+      <section class="news">
+        <h2>Recent news about companies</h2>
+      </section>
+    </main>
+    <script type="module" src="script.js"></script>
+  </body>
 </html>

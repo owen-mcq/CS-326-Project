@@ -2,6 +2,8 @@ body {
     font-family: 'Arial';
     background-color: white; 
     color: black; 
+    margin: 0;
+    padding: 0;
 }
 
 nav ul {
@@ -103,4 +105,87 @@ h1{
     height: auto;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .5); 
     border-radius: 15px;
+}
+
+header {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.dropdownNavBar {
+    position: relative;
+    display: inline-block;
+}
+
+.dropBtn {
+    background-color: #4caf50;
+    color: white;
+    width: 200px;
+    height: 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 15px;
+}
+
+.dropBtn:hover {
+    background-color: #45a049;
+}
+
+.links {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.links a {
+    color: green;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.links a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdownNavBar:hover .links {
+    display: block;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.search input[type="text"] {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    width: 200px;
+    background-color: #f1f1f1;
+}
+
+.search input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    background-color: #ffffff;
+    padding: 30px;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
