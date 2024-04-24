@@ -1,4 +1,9 @@
 # CS-326-Project
-Most of the information filled out  
-CSS styling completed  
-JS is properly working, when the profile is clicked, the bio shows up
+4/24/24
+To-Do
+1. Get four seperate pages working that we can navigate through/set up nav bar
+2. Set up PouchDB for local storage
+3. Handle the CSS for each page
+4. On the main page rotate through images or charts to show we can use JS for the back-end(data mocking)
+5. Make sure to document all functions
+6. Every one has to do something
