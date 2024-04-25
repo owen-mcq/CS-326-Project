@@ -9,13 +9,11 @@ document.addEventListener("DOMContentLoaded", function() {
     btn.addEventListener("click", function(){
         side.classList.toggle("on");
         shadow.classList.toggle("on");
-        head.classList.toggle("on");
     });
 
     shadow.addEventListener("click", function(){
         side.classList.remove("on");
         shadow.classList.remove("on");
-        head.classList.remove("on");
     });
 
     profiles.forEach(profile => {
