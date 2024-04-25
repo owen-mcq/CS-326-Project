@@ -2,14 +2,23 @@ const db = new PouchDB("mydatabase");
 
 export async function addStock(name) {
   try {
-    await db.put({
-      _id: name,
-      name: name,
-      date: new Date().toISOString(),
-    });
-    console.log("Success");
+    const exists = await db.get(name);
+    if (exists) {
+      console.log("exists");
+      return;
+    }
+
   } catch (error) {
-    console.error("Error", error);
+    if (error.status === 404) {
+      await db.put({
+        _id: name,
+        name: name,
+        date: new Date().toISOString(),
+      });
+      console.log("Success");
+    } else {
+      console.error("Error", error);
+    }
   }
 }
 
