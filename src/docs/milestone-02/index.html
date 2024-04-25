@@ -3,206 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Team 27 Milestone-01</title>
+    <title>Team 27 Milestone-02</title>
     <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js" defer></script>
   </head>
   <body>
-    <h1>Stock Dashboard</h1>
-    <nav>
-      <ul>
-        <li><a href="#overview">Overview</a></li>
-        <li><a href="#application-parts">Application Parts</a></li>
-        <li><a href="#data-requirements">Data Requirements</a></li>
-        <li><a href="#wire-frames">Wire Frames</a></li>
-        <li><a href="#real-world">Real-World Connection</a></li>
-        <li><a href="#integrative-experience">Integrative Experience</a></li>
-        <li><a href="#team">Meet the Team</a></li>
+    <div class="head">
+      <header>
+        <nav>
+            <button class="dropBtn">Button</button>
+            <div class="search">
+              <input type="text" placeholder="Search!" />
+            </div>
+        </nav>
+      </header>
+      <main>
+        <section class="mainStock">
+          <h2>Rotation of stock charts</h2>
+        </section>
+        <section class="watchList">
+          <h2>User watch list</h2>
+        </section>
+        <section class="news">
+          <h2>Recent news about companies</h2>
+        </section>
+      </main>
+    </div>
+    <div class="side">
+      <ul class="links">
+        <li><a href="index.html">Overview</a></li>
         <li><a href="home.html">Home</a></li>
       </ul>
-    </nav>
-    <section id="overview">
-      <h2>Overview</h2>
-      <p>
-        Our web application, a Stock Trading Dashboard, aims to provide a
-        user-friendly interface for monitoring real-time stock prices,
-        conducting company searches, and performing stock analysis. Catering to
-        both individual investors and finance professionals, the platform
-        addresses the challenge of accessing timely and reliable stock market
-        information.
-      </p>
-      <p>
-        With a search function, users can quickly find information on any
-        company listed on the stock exchange, facilitating research and
-        decision-making processes. Additionally, analytical tools offer insights
-        into stock performance and trends.
-      </p>
-      <p>
-        By combining real-time data visualization with powerful analysis
-        capabilities, our project aims to enhance the trading experience for a
-        broad audience, contributing to a better world of stock trading.
-      </p>
-    </section>
-    <section id="application-parts">
-      <h2>Application Parts</h2>
-      <p>
-        In our application we hope to have some type of search feature for
-        finding each company listed on the stock market, then be able to access
-        a real-time chart for that specific company.
-      </p>
-      <p>
-        We also want to the web application to have a feature were you can
-        "favorite" or "add to watch list" a certain company to have it displayed
-        in a certain area in the web app. We hope to have this saved between
-        sessions, i.e. if you leave the site nothing will be changed from the
-        last time you opened the web application.
-      </p>
-      <p>
-        We hope to also include a feature that allows the user to see the
-        loss/gain over any certain period of time, not just days also time
-        within the days, this will be the hardest part to find an API for.
-      </p>
-    </section>
-    <section id="data-requirements">
-      <h2>Data Requirements</h2>
-    </section>
-    <section id="wire-frames">
-      <h2>Wire Frames</h2>
-      <p>
-        This is a very, very rough wire frame of what we hope to have our web
-        app look like. This is heavily subject to change. At this stage, we're
-        simply laying out the basic structure and functionality of the app. The
-        wireframe is minimalist, focusing on essential elements such as
-        navigation, content placement, and user interaction points. As we
-        progress, we'll refine and iterate upon this initial concept to create a
-        more polished and user-friendly interface.
-      </p>
-      <h3>Home page</h3>
-      <p>
-        This wire frame for the home page features a pullout navigation bar, a
-        search bar, a dynamic stock chart, a watchlist section, and a news feed
-        tailored to the watchlist. It aims to offer users easy navigation and
-        comprehensive financial insights at a glance.
-      </p>
-      <img src="photos/wire_frame.png" alt="Homepage Wire Frame" />
-      <h3>About Us</h3>
-      <p>
-        The About Us page is designed to provide users with insight into the
-        team behind our project. It features pictures of each team member
-        alongside their name. By clicking on these pictures, users can access
-        individual bios, offering a glimpse into each team member's background,
-        expertise, and role within the project.
-      </p>
-      <img src="photos/wire_frame2.png" alt="About Us Wire Frame" />
-      <h3>Individual Stock Page</h3>
-      <p>
-        On the individual stock page, users find a concise layout. The primary
-        focus is on the stock's real-time chart, with recent news displayed
-        nearby. Key statistics are provided for quick reference. In a separate
-        section, users can access general information about the stock, including
-        its sector.
-      </p>
-      <img
-        src="photos/wire_frame3.png"
-        alt="Individual Stock Page Wire Frame"
-      />
-      <h3>Watch List</h3>
-      <p>
-        The watchlist page displays selected stocks with key stats in a concise
-        format for easy monitoring. Users can quickly assess performance
-        metrics. Adding stocks to the watchlist is conveniently located at the
-        bottom for easy management.
-      </p>
-      <img src="photos/wire_frame4.png" alt="Watch List Wire Frame" />
-    </section>
-    <section id="real-world">
-      <h2>Real-World Connection</h2>
-      <p>
-        Our Stock Trading Dashboard addresses the real-world challenge of
-        accessing reliable and timely stock market information. In today's
-        world, getting access to realtime stock analysis data has never been
-        easier for those who know how to leverage modern api's and technologies
-        yet for the average layperson, it has never been more complicated. With
-        this app, the average person can make informed decision when looking to
-        invest, trade, or simply study a particular stock.
-      </p>
-    </section>
-    <section id="integrative-experience">
-      <h2>Integrative Experience</h2>
-      <p>
-        Throughout our university experience, we have been exposed to a variety
-        of fields including politics, literature, and the arts. We have chosen
-        to showcase our knowledge through our non-computer science experiences
-        and personal passions for finance, design, and modern-day events.
-      </p>
-      <p>
-        Within this project, we will demonstrate how web development can be
-        combined with these factors to create a cohesive product. In our
-        experience, we believe using cumulative knowledge from different fields
-        creates a better user experience. Many financial analysis applications
-        lack user-friendly design, appealing to a vast majority of people; many
-        of these applications also lack the background information on modern
-        events needed to make an educated analysis.
-      </p>
-      <p>
-        We hope to create an application that can alleviate these real-world
-        problems using our collective knowledge of finance, design, and modern
-        events, in combination with our experience in web development.
-      </p>
-    </section>
-    <section id="team">
-      <h2>Meet the Team</h2>
-      <ul>
-        <li>
-          <img src="photos/Rishi.jpg" alt="Rishi Patel" />
-          <h3>Rishi Patel</h3>
-          <div class="bio">
-            <p>
-              I am a sophomore at the University of Massachusets - Amherst
-              studying Computer Science and Math. I had a back-end and front-end
-              role in this project, particularly the javascript and some of the
-              css.
-            </p>
-          </div>
-        </li>
-        <li>
-          <img src="photos/Owen.png" alt="Owen McQuaid" />
-          <h3>Owen McQuaid</h3>
-          <div class="bio">
-            <p>
-              I am a junior at the University of Massachusets - Amherst studying
-              Computer Science. I am taking on the role of team/project manager.
-              I do most of the setting up and communication between everyone and
-              give everyone there share of work. Also step in when needed for
-              both front end and back end.
-            </p>
-          </div>
-        </li>
-        <li>
-          <img src="photos/Theresa.jpg" alt="Theresa Foley" />
-          <h3>Theresa Foley</h3>
-          <div class="bio">
-            <p>
-              I am a junior at the University of Massachusets - Amherst who in
-              Computer Science. I worked on the front end of the web application
-              referring to the user interface and user experience elements that
-              users interact with directly.
-            </p>
-          </div>
-        </li>
-        <li>
-          <img src="photos/Chandan.jpg" alt="Chandan Marle" />
-          <h3>Chandan Marle</h3>
-          <div class="bio">
-            <p>
-              I am a junior Computer Science student at the University of
-              Massachusets - Amherst. During this project, I will play a
-              critical role in building a suitable and robust front end to
-              accurately portray stock analysis across the NASDAQ and NYSE.
-            </p>
-          </div>
-        </li>
-      </ul>
-    </section>
+    </div>
+    <div class="shadow"></div>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
