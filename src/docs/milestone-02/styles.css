@@ -172,14 +172,13 @@ header {
 }
 
 .links {
-  display: block;
-  position: absolute;
+  display: flex;
+  position: column;
+  align-items: flex-start;
+  width: 100%;
+  list-style: none;
+  border-radius: 0;
   background-color: #ffffff;
-  min-width: 200px;
-  border: 20px;
-  border-color: 20px;;
-  z-index: 1;
-  border-radius: 5px;
   list-style: none;
 }
 
