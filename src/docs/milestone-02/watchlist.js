@@ -13,11 +13,13 @@ function generateGridElements(rows, columns) {
     }
 }
 
+//Brings out the sidebar when the menu button is clicked
 btn.addEventListener("click", function(){
     side.classList.toggle("on");
     shadow.classList.toggle("on");
 });
 
+//When the user clicks on any area that is not the side bar it will close the sidebar
 shadow.addEventListener("click", function(){
     side.classList.remove("on");
     shadow.classList.remove("on");
