@@ -1,16 +1,19 @@
-const db = new PouchDB('mydatabase');
+const db = new PouchDB("mydatabase");
 
-export async function addStock(name){
-   db.put({
+export async function addStock(name) {
+  try {
+    await db.put({
       _id: name,
       name: name,
-      date: new Date().toISOString()
-    }).catch(function(error) {
-      console.error('Error', error);
+      date: new Date().toISOString(),
     });
+    console.log("Success");
+  } catch (error) {
+    console.error("Error", error);
+  }
 }
 
-export async function getStock(){
-   const result = await db.allDocs({ include_docs: true});
-   return result.rows.map((row) => row.doc);
+export async function getStock() {
+  const result = await db.allDocs({ include_docs: true });
+  return result.rows.map((row) => row.doc);
 }

@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    search.addEventListener("keypress", async function(event){
+    search.addEventListener("keypress", async (event)=>{
         if (event.key === "Enter") {
             const stock = search.value.trim();
             if(stock !== ""){
