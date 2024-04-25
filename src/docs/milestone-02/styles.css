@@ -7,10 +7,10 @@ body {
 }
 
 nav ul {
-  list-style: none; /* Removes bullet points */
+  list-style: none;
   margin: 0;
   padding: 0;
-  background-color: #e8f5e9; /*light green*/
+  background-color: rgb(81, 81, 81);
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -70,12 +70,11 @@ nav ul li a:hover {
 }
 
 section {
-  background-color: white;
+  background-color: rgb(84, 84, 84);
   padding: 20px;
   margin: 20px 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
-  background-color: #e8f5e9;
 }
 
 h2 {
@@ -105,7 +104,7 @@ h1 {
 }
 
 header {
-  background-color: #ffffff;
+  background-color: rgb(61, 61, 61);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -125,7 +124,7 @@ header {
   left: -100%;
   width: 250px;
   height: 100vh;
-  background-color: #ffffff;
+  background-color: rgb(28, 28, 28);
   padding: 20px;
   transition: left 0.6s ease;
   z-index: 2;
@@ -224,7 +223,7 @@ main {
 }
 
 section {
-  background-color: #ffffff;
+  background-color: #383838;
   padding: 30px;
   margin: 20px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
