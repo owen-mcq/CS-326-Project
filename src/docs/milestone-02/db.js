@@ -1,13 +1,14 @@
-import PouchDB from "pouchdb";
-
 const db = new PouchDB('mydatabase');
 
-
 export async function addStock(name){
-   const time = new Date.toISOString();
-   await db.put({_id:name, time});
+   db.put({
+      _id: name,
+      name: name,
+      date: new Date().toISOString()
+    }).catch(function(error) {
+      console.error('Error', error);
+    });
 }
-
 
 export async function getStock(){
    const result = await db.allDocs({ include_docs: true});

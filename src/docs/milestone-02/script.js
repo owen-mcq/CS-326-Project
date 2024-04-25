@@ -1,4 +1,4 @@
-import addStock from "./db.js"
+import { addStock } from "./db.js";
 
 document.addEventListener("DOMContentLoaded", function() {
     // Get all profiles
@@ -27,14 +27,14 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    search.addEventListener("keypress", async function(button){
-        if (button === "Enter") {
-            const stock = search.ariaValueMax.trim();
+    search.addEventListener("keypress", async function(event){
+        if (event.key === "Enter") {
+            const stock = search.value.trim();
             if(stock !== ""){
                 await addStock(stock);
                 search.value = "";
             }
         }
-    })
+    });    
 
 }); 
