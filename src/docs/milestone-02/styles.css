@@ -183,7 +183,7 @@ nav {
 }
 
 .search {
-  margin-left: 20px;
+  margin-left: 42.75%;
 }
 
 .search input[type="text"] {
@@ -202,10 +202,30 @@ nav {
 
 main {
   padding: 20px;
+  display: grid;
+  grid-template-columns: 4fr 5fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+}
+
+.mainStock{
+  grid-column: 1;
+  grid-row: 1/ span 2;
+}
+
+.watchList {
+  grid-column: 2;
+  grid-row: 1;
+  height: 300px;
+}
+
+.news{
+  grid-column: 2;
+  grid-row: 2;
 }
 
 section {
-  background-color: rgb(28,28,28);
+  background-color: #82A67D;
   padding: 30px;
   margin: 20px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
