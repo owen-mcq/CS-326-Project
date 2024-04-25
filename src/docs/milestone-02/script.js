@@ -1,12 +1,23 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Get all profiles
     const profiles = document.querySelectorAll("#team li");
-    const dropdownNavBar = document.querySelector(".dropdownNavBar");
-    const links = document.querySelector(".links");
-    // Add event listener to each profile
-    dropdownNavBar.addEventListener("click", function(){
-        links.classList.toggle("show");
-    })
+    const btn = document.querySelector(".dropBtn");
+    const side = document.querySelector(".side");
+    const shadow = document.querySelector(".shadow");
+    const head = document.querySelector(".head");
+
+    btn.addEventListener("click", function(){
+        side.classList.toggle("on");
+        shadow.classList.toggle("on");
+        head.classList.toggle("on");
+    });
+
+    shadow.addEventListener("click", function(){
+        side.classList.remove("on");
+        shadow.classList.remove("on");
+        head.classList.remove("on");
+    });
+
     profiles.forEach(profile => {
         profile.addEventListener("click", function() {
             // Find bio section and toggle it to show
