@@ -269,3 +269,7 @@ section {
   max-width: 200px;
 }
 
+#team li h3 {
+  text-align: center;
+  margin-top: 10px;
+}
