@@ -5,19 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Upper Center Text</title>
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-  }
 
   .content {
     text-align: center;
     margin-top: 20px; /* Adjust as needed */
+    position: relative; /* Make the container relative for absolute positioning of squares */
   }
+
+  .square {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    position: absolute; 
+    top: 50%; /* Move the squares 50% from the top */
+    left: 50%; /* Move the squares 50% from the left */
+    transform: translate(-50%, -50%); /* Center the squares */
+  }
+
+  .top-left {
+    margin-top: -170px; /* Adjust to position correctly */
+    margin-left: -170px; /* Adjust to position correctly */
+  }
+
+  .top-right {
+    margin-top: -170px; /* Adjust to position correctly */
+    margin-left: 70px; /* Adjust to position correctly */
+  }
+
+  .bottom-left {
+    margin-top: 70px; /* Adjust to position correctly */
+    margin-left: -170px; /* Adjust to position correctly */
+  }
+
+  .bottom-right {
+    margin-top: 70px; /* Adjust to position correctly */
+    margin-left: 70px; /* Adjust to position correctly */
+  }
+  
 </style>
 </head>
 <body>
@@ -25,6 +49,11 @@
 <div class="content">
   <h1>Indivdual Stock Information</h1>
   <p>Additional content here</p>
+  <!-- Squares -->
+  <div class="square top-left"></div>
+  <div class="square top-right"></div>
+  <div class="square bottom-left"></div>
+  <div class="square bottom-right"></div>
 </div>
 
 </body>
