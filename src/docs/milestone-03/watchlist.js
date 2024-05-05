@@ -3,8 +3,12 @@ const side = document.querySelector(".side");
 const shadow = document.querySelector(".shadow");
 
 
-const res = fetch("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=0JAEERK0N1IZULFV");
-console.log(res);
+
+
+fetch("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=demo").then(function (response) {
+     console.log(response.json());
+  })
+  
 //This function will fill in the, for now empty, rows in the watchlist page
 function generateGridElements(rows, columns) {
     let gridContainer = document.querySelector('.grid-container'); // Select the grid container
