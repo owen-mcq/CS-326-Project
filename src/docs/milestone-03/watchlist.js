@@ -1,17 +1,63 @@
 const btn = document.querySelector(".dropBtn");
 const side = document.querySelector(".side");
 const shadow = document.querySelector(".shadow");
+const gridContainer = document.querySelector('.grid-container'); // Select the grid container
 
-//This function will fill in the, for now empty, rows in the watchlist page
-function generateGridElements(rows, columns) {
-    let gridContainer = document.querySelector('.grid-container'); // Select the grid container
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < columns; j++) {
-            let div = document.createElement('div'); // Create a new div element
-            gridContainer.appendChild(div); // Append the div to the grid container
+const tickers = ['NVDA', 'IBM', 'MSFT', 'AAPL', 'JPM', 'MA', 'ADBE', 'GE'];
+
+
+async function getStock(ticker){
+    try{
+        const response = await fetch(`https://finnhub.io/api/v1/quote?symbol=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`);
+        if (!response.ok) {
+            console.error("Failed to fetch data for:", ticker);
+            return null;
         }
+        return await response.json();;
+    }catch(err){
+        console.error("Error fetching data for", ticker);
+        return null;
     }
 }
+
+async function update() {
+    gridContainer.innerHTML = '<div>Stock</div>' +
+        '<div>Ticker</div>' +
+        '<div>Price</div>' +
+        '<div>+%/-%</div>' +
+        '<div>52W High</div>' +
+        '<div>52W Low</div>' +
+        '<div>Day Vol</div>' +
+        '<div>Mkt Cap</div>';
+
+    for (const ticker of tickers){
+        const stockData = await getStock(ticker);
+        if (!stockData) continue;
+
+        const outputObj = {
+            symbol: ticker,
+            openPrice: stockData.o,
+            currentPrice: stockData.c,
+            highPrice: stockData.h,
+            lowPrice: stockData.l,
+            percentChange: stockData.dp,
+            previousClose: stockData.pc
+        };
+
+        gridContainer.insertAdjacentHTML('beforeend', `
+            <div>${outputObj.symbol}</div>
+            <div>${outputObj.symbol}</div>
+            <div>${outputObj.openPrice}</div>
+            <div>${outputObj.currentPrice}</div>
+            <div>${outputObj.highPrice}</div>
+            <div>${outputObj.lowPrice}</div>
+            <div>${outputObj.percentChange}%</div>
+            <div>${outputObj.previousClose}</div>
+        `);
+    }
+}
+
+update();
 
 //Brings out the sidebar when the menu button is clicked
 btn.addEventListener("click", function(){
@@ -24,5 +70,3 @@ shadow.addEventListener("click", function(){
     side.classList.remove("on");
     shadow.classList.remove("on");
 });
-
-generateGridElements(15, 8);
