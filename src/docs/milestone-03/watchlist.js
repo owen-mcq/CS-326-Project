@@ -8,15 +8,31 @@ const shadow = document.querySelector(".shadow");
 async function getStock(){
     try{
         const res = await fetch("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NVDA&apikey=0JAEERK0N1IZULFV");
-        const data = await res.json();
+        return await res.json();
     }catch(err){
         throw new Error("Error fetching",err);
     }
 }
 
-fetch("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=demo").then(function (response) {
+async function getStockDetails() {
+    const stockData = await getStock();
+    const timeSeries = stockData["Time Series (Daily)"];
+    const latestDate = Object.keys(timeSeries)[0];
+    const latestData = timeSeries[latestDate];
 
-  })
+    const stock = {
+        symbol: "NVDA",
+        price: parseFloat(latestData["4. close"]),
+        change: 0,
+        high52: 0,
+        low52: 0,
+        volume: parseInt(latestData["5. volume"]),
+        marketCap: 0
+    };
+    console.log(stock);
+}
+
+getStockDetails();
   
 //This function will fill in the, for now empty, rows in the watchlist page
 function generateGridElements(rows, columns) {
