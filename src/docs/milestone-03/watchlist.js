@@ -5,8 +5,17 @@ const shadow = document.querySelector(".shadow");
 
 
 
+async function getStock(){
+    try{
+        const res = await fetch("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NVDA&apikey=0JAEERK0N1IZULFV");
+        const data = await res.json();
+    }catch(err){
+        throw new Error("Error fetching",err);
+    }
+}
+
 fetch("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=demo").then(function (response) {
-     console.log(response.json());
+
   })
   
 //This function will fill in the, for now empty, rows in the watchlist page
