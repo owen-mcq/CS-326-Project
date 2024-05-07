@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
           search.value = "";
         } else if (stock === "clear") {
           await deleteAllStocks();
+          search.value = "";
         }
       }
     });
