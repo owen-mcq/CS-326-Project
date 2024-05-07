@@ -1,12 +1,22 @@
+import { getStock } from "./db.js";
+
+
 const btn = document.querySelector(".dropBtn");
 const side = document.querySelector(".side");
 const shadow = document.querySelector(".shadow");
 const gridContainer = document.querySelector('.grid-container'); // Select the grid container
+let tickers = await setStocks();
 
-const tickers = ['NVDA', 'IBM', 'MSFT', 'AAPL', 'JPM', 'MA', 'ADBE', 'GE'];
+async function setStocks(){
+    try {
+        const stocks = await getStock();
+        return stocks.map(stock => stock.name);
+    } catch (err) {
+        console.log("Failed to get stock names", err);
+    }
+}
 
-
-async function getStock(ticker){
+async function fetchStock(ticker){
     try{
         const response = await fetch(`https://finnhub.io/api/v1/quote?symbol=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`);
         if (!response.ok) {
@@ -31,7 +41,7 @@ async function update() {
         '<div>Mkt Cap</div>';
 
     for (const ticker of tickers){
-        const stockData = await getStock(ticker);
+        const stockData = await fetchStock(ticker);
         if (!stockData) continue;
 
         const outputObj = {
