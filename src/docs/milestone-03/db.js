@@ -26,3 +26,21 @@ export async function getStock() {
   const result = await db.allDocs({ include_docs: true });
   return result.rows.map((row) => row.doc);
 }
+
+export async function deleteStock(name) {
+  await db.remove(name);
+}
+export async function deleteAllStocks() {
+  try {
+    // Retrieve all documents in the database
+    const allDocs = await db.allDocs({ include_docs: true });  // Ensure documents are included
+    for (let i = 0; i < allDocs.rows.length; i++) {
+      const doc = allDocs.rows[i].doc;
+      db.remove(doc);
+    }
+    console.log("Success");
+  } catch (error) {
+    // Handle the error
+    console.error("Error deleting all stocks:", error);
+  }
+}

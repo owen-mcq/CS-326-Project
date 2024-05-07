@@ -1,4 +1,4 @@
-import { addStock } from "./db.js";
+import { addStock, getStock, deleteAllStocks } from "./db.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   // Get all profiles
@@ -40,9 +40,12 @@ document.addEventListener("DOMContentLoaded", function () {
     search.addEventListener("keypress", async (event) => {
       if (event.key === "Enter") {
         const stock = search.value.trim();
-        if (stock !== "") {
+        if (stock !== "" && stock !== "clear") {
           await addStock(stock);
+          console.log( await getStock(stock));
           search.value = "";
+        } else if (stock === "clear") {
+          await deleteAllStocks();
         }
       }
     });
