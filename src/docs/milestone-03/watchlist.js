@@ -23,7 +23,7 @@ async function fetchStock(ticker){
             console.error("Failed to fetch data for:", ticker);
             return null;
         }
-        return await response.json();;
+        return await response.json();
     }catch(err){
         console.error("Error fetching data for", ticker);
         return null;

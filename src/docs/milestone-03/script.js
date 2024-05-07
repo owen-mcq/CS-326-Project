@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   if (search) {
-    search.addEventListener("keypress", async (event) => {
+    search.addEventListener("keydown", async (event) => {
       if (event.key === "Enter") {
         const stock = search.value.trim();
         if (stock !== "" && stock !== "clear") {
@@ -48,6 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
           await deleteAllStocks();
           search.value = "";
         }
+      } else if (event.key === "Control") {
+        window.location.href = `./singlestock.html`;
       }
     });
   }
