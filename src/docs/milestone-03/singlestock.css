@@ -1,0 +1,282 @@
+body {
+    font-family: "Arial";
+    background-color: rgb(28, 28, 28);
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(56, 56, 56);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+nav ul li {
+    float: none;
+}
+
+nav ul li a {
+    display: block;
+    color: green;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none; /*Remove underlines */
+    border-radius: 15px;
+}
+
+nav ul li a:hover {
+    background-color: green;
+    color: rgb(123, 123, 123);
+}
+
+#overview {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+#team ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0;
+    list-style: none;
+}
+
+#team li {
+    flex-basis: 22%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 5%;
+}
+
+#team img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+#team p {
+    text-align: center;
+}
+
+h2 {
+    color: green;
+}
+
+h1 {
+    font-family: "Courier New", Courier, monospace;
+    color: green;
+    text-align: center;
+}
+
+.bio {
+    display: none;
+}
+
+.bio.show {
+    display: block;
+}
+
+header {
+    background-color: rgb(61, 61, 61);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.head {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.6s ease;
+    margin-left: 0;
+
+}
+
+.side {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100vh;
+    background-color: rgb(28, 28, 28);
+    padding: 20px;
+    transition: left 0.6s ease;
+    z-index: 2;
+}
+
+.side.on {
+    left: 0;
+}
+
+.shadow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease;
+    z-index: 1;
+}
+
+.shadow.on {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropBtn {
+    background-color: green;
+    color: rgb(0, 0, 0);
+    width: 60px;
+    height: 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 15px;
+}
+
+.dropBtn:hover {
+    background-color: #45a049;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns links to the left edge */
+    width: 100%; /* Ensures the container fills the sidebar */
+    margin: 0;
+    padding: 20px 10px;
+    list-style: none;
+    background-color: rgb(28,28,28);
+    border-radius: 0;
+}
+
+.links a {
+    color: #ccc;
+    padding: 12px 16px; /* Consistent padding for all links */
+    text-decoration: none;
+    display: block;
+    box-shadow: green 0px 0px 0px 3px;
+    margin: 25px 0; /* Vertical spacing between links */
+    border-radius: 8px;
+}
+
+.links a:hover {
+    background-color: #f1f1f1;
+    color:rgb(28, 28, 28);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.search {
+    margin-left: 42.75%;
+}
+
+.search input[type="text"] {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 200px;
+    background-color: #f1f1f1;
+    transition: box-shadow 0.6s;
+}
+
+.search input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+main {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 60% auto; /* Changed from fixed percentage to 'auto' for the second row */
+    height: 100vh;
+    column-gap: 20px; /* Explicitly setting column gap */
+    row-gap: 20px;    /* Explicitly setting row gap */
+}
+
+.mainStock {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.watchList {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
+.news {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    min-height: 50%;  /* Ensures that the section is at least 50% the height of its container */
+}
+
+.stockData {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+
+
+
+section {
+    background-color: #82A67D;
+    padding: 30px;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+#team ul{
+    display: grid;
+    list-style: none;
+    padding: 0;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+#team li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color:#82A67D;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.profile img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.bio{
+    display: none;
+}
+
+
+.bio.show {
+    display: block;
+}
+
+.bio p{
+    max-width: 200px;
+}
+
+#team li h3 {
+    text-align: center;
+    margin-top: 10px;
+}
