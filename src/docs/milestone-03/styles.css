@@ -1,5 +1,5 @@
 body {
-  font-family: "Arial";
+  font-family: "Arial", sans-serif;
   background-color: rgb(28, 28, 28);
   color: black;
   margin: 0;
@@ -29,6 +29,7 @@ nav ul li a {
   padding: 14px 16px;
   text-decoration: none; /*Remove underlines */
   border-radius: 15px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 nav ul li a:hover {
@@ -105,13 +106,14 @@ header {
 .side {
   position: fixed;
   top: 0;
-  left: -100%;
+  left: -100%;  
   width: 250px;
   height: 100vh;
   background-color: rgb(28, 28, 28);
   padding: 20px;
   transition: left 0.6s ease;
   z-index: 2;
+  overflow-y: auto; /* Enable scrolling if content exceeds sidebar height */
 }
 
 .side.on {
@@ -144,6 +146,7 @@ header {
   font-size: 16px;
   border: none;
   border-radius: 15px;
+  transition: background-color 0.3s;
 }
 
 .dropBtn:hover {
@@ -192,7 +195,7 @@ nav {
   border-radius: 5px;
   width: 200px;
   background-color: #f1f1f1;
-  transition: box-shadow 0.6s;
+  transition: box-shadow 0.3s;
 }
 
 .search input[type="text"]:focus {
@@ -247,6 +250,12 @@ section {
   background-color:#82A67D;
   border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s;
+  margin-bottom: 20px;
+}
+
+#team li:hover {
+  transform: translateY(-5px);
 }
 
 .profile img{
