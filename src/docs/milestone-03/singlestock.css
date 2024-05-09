@@ -199,37 +199,30 @@ nav {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
+
 main {
+    padding: 20px;
     display: grid;
-    grid-template-columns: 60% 40%;
-    grid-template-rows: 60% auto; /* Changed from fixed percentage to 'auto' for the second row */
-    height: 100vh;
-    column-gap: 20px; /* Explicitly setting column gap */
-    row-gap: 20px;    /* Explicitly setting row gap */
+    grid-template-columns: 4fr 5fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
 }
 
-.mainStock {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
+.mainStock{
+    grid-column: 1;
+    grid-row: 1/ span 2;
 }
 
 .watchList {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
+    grid-column: 2;
+    grid-row: 1;
+    height: 300px;
 }
 
-.news {
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-    min-height: 50%;  /* Ensures that the section is at least 50% the height of its container */
+.news{
+    grid-column: 2;
+    grid-row: 2;
 }
-
-.stockData {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-}
-
-
 
 section {
     background-color: #82A67D;
