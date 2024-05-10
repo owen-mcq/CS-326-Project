@@ -1,60 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Upper Center Text</title>
-<style>
-
-  .content {
-    text-align: center;
-    margin-top: 20px; 
-    position: relative; /* Make the container relative for absolute positioning of squares */
-  }
-
-  .square {
-    width: 100px;
-    height: 100px;
-    background-color: green;
-    position: absolute; 
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-  }
-
-  .top-left {
-    margin-top: -170px; 
-    margin-left: -170px; 
-  }
-
-  .top-right {
-    margin-top: -170px; 
-    margin-left: 70px; 
-  }
-
-  .bottom-left {
-    margin-top: 70px; 
-    margin-left: -170px; 
-  }
-
-  .bottom-right {
-    margin-top: 70px;
-    margin-left: 70px; 
-  }
-  
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="singlestock.css" />
+  <script src="//cdn.jsdelivr.net/npm/pouchdb@8.0.1/dist/pouchdb.min.js"></script>
 </head>
+
 <body>
-
-<div class="content">
-  <h1>Indivdual Stock Information</h1>
-  <p>Additional content here</p>
-  <!-- Squares -->
-  <div class="square top-left"></div>
-  <div class="square top-right"></div>
-  <div class="square bottom-left"></div>
-  <div class="square bottom-right"></div>
+<header>
+  <nav>
+    <button class="dropBtn">Menu</button>
+  </nav>
+</header>
+<div id="team">
+  <ul>
+    <li>
+      <div class="profile">
+      </div>
+    </li>
+    <li>
+      <div class="profile">
+      </div>
+    </li>
+    <li>
+      <div class="profile">
+      </div>
+    </li>
+    <li>
+      <div class="profile">
+      </div>
+    </li>
+  </ul>
 </div>
-
+<div class="side">
+  <ul class="links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="watchlist.html">Watch List</a></li>
+    <li><a href="aboutus.html">About Us</a></li>
+  </ul>
+</div>
+<div class="shadow"></div>
+<script type="module" src="singlestock.js"></script>
 </body>
 </html>
