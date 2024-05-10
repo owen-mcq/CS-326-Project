@@ -36,11 +36,6 @@ nav ul li a:hover {
     color: rgb(123, 123, 123);
 }
 
-#overview {
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
 #team ul {
     display: flex;
     flex-wrap: wrap;
@@ -59,12 +54,6 @@ nav ul li a:hover {
     border-radius: 5%;
 }
 
-#team img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-}
-
 #team p {
     text-align: center;
 }
@@ -79,14 +68,6 @@ h1 {
     text-align: center;
 }
 
-.bio {
-    display: none;
-}
-
-.bio.show {
-    display: block;
-}
-
 header {
     background-color: rgb(61, 61, 61);
     padding: 20px;
@@ -99,7 +80,6 @@ header {
     z-index: 1;
     transition: transform 0.6s ease;
     margin-left: 0;
-
 }
 
 .side {
@@ -233,12 +213,15 @@ section {
 }
 
 #team ul{
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: absolute;
     list-style: none;
     padding: 0;
-    grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
 }
+
 #team li{
     display: flex;
     flex-direction: column;
@@ -249,8 +232,8 @@ section {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.profile img{
-    width: 100px;
+.profile {
+    width: 20%;
     height: 100px;
     border-radius: 50%;
     margin-bottom: 10px;
@@ -269,7 +252,7 @@ section {
     max-width: 200px;
 }
 
-#team li h3 {
+#team h3 {
     text-align: center;
     margin-top: 10px;
 }
