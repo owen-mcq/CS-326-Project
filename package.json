@@ -31,6 +31,7 @@
   "scripts": {
     "dev": "",
     "test": "",
+    "start": "node src/server/server.js",
     "milestone-01": "http-server src/docs/milestone-01 -p 3000 -c-1 -o -s",
     "milestone-02": "http-server src/docs/milestone-02 -p 3000 -c-1 -o -s",
     "milestone-03": "http-server src/docs/milestone-03 -p 3000 -c-1 -o -s",
