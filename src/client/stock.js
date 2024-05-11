@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     search.value = "";
                 }
             } else if (event.key === "Control") {
-                window.location.href = `./singlestock.html`;
+                window.location.href = `stock.html`;
             }
         });
     }
