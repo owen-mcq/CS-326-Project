@@ -49,7 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
           search.value = "";
         }
       } else if (event.key === "Control") {
-        window.location.href = `stock.html`;
+          const ticker = search.value.trim();
+          window.location.href = `stock.html?ticker=${encodeURIComponent(ticker)}`;
       }
     });
   }
