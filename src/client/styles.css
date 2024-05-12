@@ -48,6 +48,7 @@ nav ul li a:hover {
   justify-content: space-around;
   padding: 0;
   list-style: none;
+  justify-content: center;
 }
 
 #team li {
@@ -72,6 +73,7 @@ nav ul li a:hover {
 
 h2 {
   color: green;
+  text-align: center;
 }
 
 h1 {
@@ -213,13 +215,13 @@ main {
 
 .mainStock{
   grid-column: 1;
-  grid-row: 1/ span 2;
+  grid-row: 1;
 }
 
 .watchList {
   grid-column: 2;
   grid-row: 1;
-  height: 300px;
+  height: 150px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(6, auto);  
@@ -228,8 +230,9 @@ main {
 }
 
 .news{
-  grid-column: 2;
+  grid-column: span 2;
   grid-row: 2;
+  
 }
 
 section {
@@ -290,4 +293,44 @@ section {
 
 .mainStock{
   background-color: #000000;
+  height: 300px;
+}
+
+.newsObj {
+  background-color: #333;
+  color: #82A67D;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.75);
+  padding: 15px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.newsImg {
+  width: 100px;
+  height: auto;
+  margin-right: 20px;
+  background-color: #333;
+}
+
+.newsText {
+  flex-grow: 1; /* Allows the text content to fill the remaining space */
+}
+
+.newsText h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: rgb(163, 223, 155); /* Green color for the headline, matching metrics */
+  font-size: 16px; /* Sizing consistent with metrics headline */
+}
+
+.newsText p, .newsText a {
+  color: rgb(163, 223, 155); /* Text color matching the metrics box */
+  font-size: 14px; /* Consistent font sizing */
+  line-height: 1.5; /* Readability line height */
+}
+
+.newsText a {
+  text-decoration: none; /* No underline by default */
 }

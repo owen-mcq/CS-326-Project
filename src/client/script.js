@@ -188,10 +188,66 @@ async function createChart(ticker){
 
 
 async function randomChart() {
-  const tickers = ["AAPL", "TSLA", "MSFT", "GOOGL", "NVDA", "SPOT"];
+  let tickers = ["AAPL","TSLA","NVDA","GOOGL","MSFT","RACE","GE","AMC","GME","AMZN","INTC","META"];
   const randomIndex = Math.floor(Math.random() * tickers.length);
   createChart(tickers[randomIndex]);
 }
 
 randomChart();
 
+async function fetchNews() {
+  let tickers = ["AAPL","TSLA","NVDA","GOOGL","MSFT","RACE","GE","AMC","GME","AMZN","INTC","META"];
+  const randomIndex = Math.floor(Math.random() * tickers.length);
+  const random = tickers[randomIndex]
+  try{
+      //Get api for name of stock and the news
+      const url = `https://finnhub.io/api/v1/company-news?symbol=${random}&from=2020-08-15&to=2024-05-02&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`;
+      const nameUrl = `https://finnhub.io/api/v1/search?q=${random}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`;
+      //Extract data
+      const nameResponse = await fetch(nameUrl);
+      const nameData = await nameResponse.json();
+      //Get company's first name, capitalize the first lettr
+      const firstNameRaw = nameData.result[0].description.split(' ')[0];
+      const companyName = firstNameRaw.charAt(0).toUpperCase() + firstNameRaw.slice(1).toLowerCase();
+      console.log(companyName);
+      const response = await fetch(url);
+      const data = await response.json();
+      //Filter all the news articles to find 3 articles with the companies name
+      let filteredData = data.filter((news) => {
+          return news.summary.toLowerCase().includes(companyName.toLowerCase());
+      }).slice(0,2);
+      //Checks ticker if company returns nothing
+      if (filteredData.length === 0) {
+          filteredData = data.filter((news) => {
+              return news.summary.toLowerCase().includes(random.toLowerCase());
+          }).slice(0,2);
+      }
+      console.log(data);
+      console.log(filteredData);
+      displayNews(filteredData);
+  }catch(err){
+      console.error(err);
+  }
+}
+
+function displayNews(data) {
+  const div = document.querySelector('.news');
+  div.innerHTML = "<h2 style=\"color: #333333\">News</h2>";
+  data.forEach((news) => {
+      //Check if it image exists
+      const imageHTML = news.image ? `<img src="${news.image}" class="newsImg">` : '';
+      const content = `
+          <div class="newsObj">
+              ${imageHTML}
+              <div class="newsText">
+                  <h3 style="color: green">${news.headline}</h3>
+                  <p>${news.summary}</p>
+                  <p><a href="${news.url}" target="_blank">Read more...</a></p>
+              </div>
+          </div>
+      `;
+      div.innerHTML += content;
+  });
+}
+
+fetchNews();
