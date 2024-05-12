@@ -25,20 +25,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     async function fetchNews(ticker) {
         try{
+            //Get api for name of stock and the news
             const url = `https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=2020-08-15&to=2024-05-02&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`;
             const nameUrl = `https://finnhub.io/api/v1/search?q=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`;
-
+            //Extract data
             const nameResponse = await fetch(nameUrl);
             const nameData = await nameResponse.json();
+            //Get company's first name, capitalize the first lettr
             const firstNameRaw = nameData.result[0].description.split(' ')[0];
             const companyName = firstNameRaw.charAt(0).toUpperCase() + firstNameRaw.slice(1).toLowerCase();
             console.log(companyName);
             const response = await fetch(url);
             const data = await response.json();
+            //Filter all the news articles to find 3 articles with the companies name
             let filteredData = data.filter((news) => {
                 return news.summary.toLowerCase().includes(companyName.toLowerCase());
             }).slice(0,3);
-            //Checks if company returns nothing
+            //Checks ticker if company returns nothing
             if (filteredData.length === 0) {
                 filteredData = data.filter((news) => {
                     return news.summary.toLowerCase().includes(ticker.toLowerCase());
