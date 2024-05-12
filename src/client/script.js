@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       } else if (event.key === "Control") {
           const ticker = search.value.trim();
+          search.value = "";
           window.location.href = `stock.html?ticker=${encodeURIComponent(ticker)}`;
       }
     });
