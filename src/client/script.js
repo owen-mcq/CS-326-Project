@@ -54,3 +54,48 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+// home page watchlist implementation
+const watchList = document.querySelector('.watchList')
+let tickers = ["AAPL","TSLA","NVDA"];
+
+async function fetchStock(ticker){
+  try{
+      const response = await fetch(`https://finnhub.io/api/v1/quote?symbol=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`);
+      if (!response.ok) {
+          console.error("Failed to fetch data for:", ticker);
+          return null;
+      }
+      return await response.json();
+  }catch(err){
+      console.error("Error fetching data for", ticker);
+      return null;
+  }
+}
+
+async function update() {
+  watchList.innerHTML =
+      '<div>Ticker</div>' +
+      '<div>Price</div>' +
+      '<div>+%/-%</div>';
+
+  for (const ticker of tickers){
+      const stockData = await fetchStock(ticker);
+      if (!stockData) continue;
+
+      const outputObj = {
+          symbol: ticker,
+          currentPrice: stockData.c,
+          percentChange: stockData.dp,
+      };
+
+      watchList.insertAdjacentHTML('beforeend', `
+          <div>${outputObj.symbol}</div>
+          <div>${outputObj.currentPrice}</div>
+          <div>${outputObj.percentChange}%</div>
+
+      `);
+  }
+}
+
+update();
