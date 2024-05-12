@@ -43,6 +43,7 @@
     "prettier": "^3.2.5"
   },
   "dependencies": {
+    "chart.js": "^4.4.2",
     "express": "^4.19.2",
     "morgan": "^1.10.0",
     "pouchdb": "^8.0.1"
