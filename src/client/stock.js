@@ -38,10 +38,11 @@ document.addEventListener("DOMContentLoaded", function () {
             let filteredData = data.filter((news) => {
                 return news.summary.toLowerCase().includes(companyName.toLowerCase());
             }).slice(0,3);
+            //Checks if company returns nothing
             if (filteredData.length === 0) {
                 filteredData = data.filter((news) => {
                     return news.summary.toLowerCase().includes(ticker.toLowerCase());
-                })
+                }).slice(0,3);
             }
             console.log(data);
             console.log(filteredData);
@@ -124,7 +125,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     search.value = "";
                 }
             } else if (event.key === "Control") {
-                window.location.href = `./stock.html`;
+                const ticker = search.value.trim();
+                search.value = "";
+                window.location.href = `stock.html?ticker=${encodeURIComponent(ticker)}`;
             }
         });
     }
