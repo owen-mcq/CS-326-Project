@@ -1,15 +1,38 @@
-import { addStock, getStock, deleteAllStocks } from "./db.js";
+
 
 document.addEventListener("DOMContentLoaded", function () {
 
     const urlParams = new URLSearchParams(window.location.search);
     const ticker = urlParams.get('ticker');
 
+    const addStockBtn = document.querySelector('#addStockBtn');
+    const removeStockBtn = document.querySelector('#removeStockBtn');
 
     if (ticker) {
         console.log("Ticker received: ", ticker);
     }
+    //Adds stock in url to db through server
+    addStockBtn.addEventListener("click", async function() {
+        try {
+            const response = await fetch(`/stock.html/${encodeURIComponent(ticker)}`, {
+                method: 'POST',
+            });
+            if (response.ok) {console.log("Success");}
+        } catch (err){
+            console.error("Failed to fetch data for:", ticker);
+        }
+    });
 
+    removeStockBtn.addEventListener("click", async function () {
+        try {
+            const response = await fetch(`/stock.html/${encodeURIComponent(ticker)}`, {
+                method: 'DELETE',
+            });
+            if (response.ok) {console.log("Success");}
+        } catch (err){
+            console.error("Failed to fetch data for:", ticker);
+        }
+    });
     async function fetchStockdata(ticker) {
         try {
             const url = `https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`;
@@ -222,11 +245,11 @@ document.addEventListener("DOMContentLoaded", function () {
             if (event.key === "Enter") {
                 const stock = search.value.trim();
                 if (stock !== "" && stock !== "clear") {
-                    await addStock(stock);
-                    console.log( await getStock(stock));
+                    // await addStock(stock);
+                    // console.log( await getStock(stock));
                     search.value = "";
                 } else if (stock === "clear") {
-                    await deleteAllStocks();
+                    // await deleteAllStocks();
                     search.value = "";
                 }
             } else if (event.key === "Control") {

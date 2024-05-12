@@ -1,3 +1,5 @@
+import PouchDB from "pouchdb";
+
 const db = new PouchDB("mydatabase");
 
 export async function addStock(name) {
@@ -28,7 +30,14 @@ export async function getStock() {
 }
 
 export async function deleteStock(name) {
-  await db.remove(name);
+  try {
+    const doc = await db.get(name); // Fetch the document first
+    await db.remove(doc);  // Remove requires the full document
+    console.log("Stock removed:", name);
+  } catch (error) {
+    console.error("Error removing stock:", error.name, error.message);
+    throw error; // It's better to throw the error to handle it appropriately in the server response
+  }
 }
 export async function deleteAllStocks() {
   try {

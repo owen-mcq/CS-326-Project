@@ -1,6 +1,3 @@
-import { addStock, getStock, deleteAllStocks } from "./db.js";
-
-
 document.addEventListener("DOMContentLoaded", function () {
   // Get all profiles
   const profiles = document.querySelectorAll("#team li");
@@ -37,22 +34,28 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  async function isValid(ticker){
+      try{
+          const nameUrl = `https://finnhub.io/api/v1/search?q=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`;
+          const response = await fetch(nameUrl);
+          if (!response.ok) {
+              throw new Error(response.statusText);
+          } else{
+              return true;
+          }
+      } catch (err){
+          console.error("Error fetching data for", ticker);
+      }
+  }
+
   if (search) {
     search.addEventListener("keydown", async (event) => {
       if (event.key === "Enter") {
         const stock = search.value.trim();
-        if (stock !== "" && stock !== "clear") {
-          await addStock(stock);
-          console.log( await getStock(stock));
-          search.value = "";
-        } else if (stock === "clear") {
-          await deleteAllStocks();
+        if (stock !== "" && isValid(stock)) {
+          window.location.href = `stock.html?ticker=${encodeURIComponent(stock)}`;
           search.value = "";
         }
-      } else if (event.key === "Control") {
-          const ticker = search.value.trim();
-          search.value = "";
-          window.location.href = `stock.html?ticker=${encodeURIComponent(ticker)}`;
       }
     });
   }

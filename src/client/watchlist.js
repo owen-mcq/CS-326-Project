@@ -1,4 +1,4 @@
-import { getStock } from "./db.js";
+
 
 
 const btn = document.querySelector(".dropBtn");
@@ -9,7 +9,8 @@ let tickers = await setStocks();
 
 async function setStocks(){
     try {
-        const stocks = await getStock();
+        const response = await fetch('/watchlist.html/');
+        const stocks = await response.json();
         return stocks.map(stock => stock.name);
     } catch (err) {
         console.log("Failed to get stock names", err);
@@ -39,6 +40,7 @@ async function update() {
         '<div>Day High</div>' +
         '<div>Day Low</div>' +
         '<div>Prev Close</div>';
+    await setStocks();
 
     for (const ticker of tickers){
         const stockData = await fetchStock(ticker);
