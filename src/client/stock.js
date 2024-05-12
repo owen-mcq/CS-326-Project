@@ -113,10 +113,87 @@ document.addEventListener("DOMContentLoaded", function () {
         div.innerHTML += content;
     }
 
+    function formatDate(date) {
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+    async function fetchData(ticker){
+        try {
+            // Get current date and one month ago
+            const today = new Date();
+            const oneMonthAgo = new Date(today);
+            oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+
+            // Format dates as YYYY-MM-DD strings
+            const fromDate = formatDate(oneMonthAgo);
+            const toDate = formatDate(today);
+
+            const response = await fetch(`https://api.polygon.io/v2/aggs/ticker/${ticker}/range/1/day/${fromDate}/${toDate}?adjusted=true&sort=asc&apiKey=tYHWJdiKKmPmS_7BRZ9Ixii0XHITWPbf`);
+            if (!response.ok) {
+                console.error("Failed to fetch data for:", ticker);
+                return null;
+            }
+            const responseData = await response.json();
+            return responseData.results;
+        } catch (error) {
+            console.error("Error fetching data for", ticker, error);
+            return null;
+        }
+    }
+
+    async function createChart(ticker) {
+        try {
+            const data = await fetchData(ticker);
+            const chartData = {
+                labels: [],
+                datasets: [{
+                    label: `${ticker} 1 Month Chart`,
+                    data: [],
+                    fill: false,
+                    borderColor: 'rgb(0, 100, 30)',
+                    tension: 0.1
+                }]
+            };
+
+            for (const result of data) {
+                chartData.labels.push(new Date(result.t).toLocaleDateString());
+                chartData.datasets[0].data.push(result.c);
+            }
+            const canvas = document.getElementById('myChart');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            new Chart(ctx, {
+                type: 'line',
+                data: chartData,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            titleFont: {
+                                color: 'black'
+                            },
+                            bodyFont: {
+                                color: 'black'
+                            }
+                        }
+                    }
+                }
+            });
+        } catch (error) {
+            console.error('Error fetching chart data:', error);
+        }
+    }
+
     fetchEarnings(ticker);
     fetchStockdata(ticker);
     fetchNews(ticker);
-
+    createChart(ticker);
     // Get all profiles
     const profiles = document.querySelectorAll("#team li");
     const btn = document.querySelector(".dropBtn");

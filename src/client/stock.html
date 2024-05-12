@@ -6,6 +6,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="stock.css" />
   <script src="//cdn.jsdelivr.net/npm/pouchdb@8.0.1/dist/pouchdb.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -20,13 +21,15 @@
 <div id="team">
   <ul>
     <li>
-      <div class="profile">
+      <div class="profile" id="parent">
+        <section class="stockChart">
+          <canvas id="myChart"></canvas>
+        </section>
       </div>
     </li>
     <li>
       <div class="profile">
-        <div class="news">
-        </div>
+        <div class="earnings"></div>
       </div>
     </li>
     <li>
@@ -41,7 +44,8 @@
     </li>
     <li>
       <div class="profile">
-        <div class="earnings"></div>
+        <div class="news">
+        </div>
       </div>
     </li>
   </ul>

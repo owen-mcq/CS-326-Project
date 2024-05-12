@@ -209,7 +209,7 @@ main {
     gap: 20px;
 }
 
-.mainStock{
+.stockChart{
     grid-column: 1;
     grid-row: 1/ span 2;
 }
@@ -369,4 +369,18 @@ section {
     color: #82A67D;
     font-size: 16px;
     line-height: 1.5;
+}
+
+.stockChart {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+}
+
+.stockChart canvas {
+    width: 100% !important;
+    height: auto !important;
 }
