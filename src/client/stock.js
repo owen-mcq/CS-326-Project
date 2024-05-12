@@ -10,6 +10,83 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Ticker received: ", ticker);
     }
 
+    async function fetchStockdata(ticker) {
+        try {
+            const url = `https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`;
+            const response = await fetch(url);
+            const data = await response.json();
+            console.log(data);
+            displayNerdData(data);
+        } catch (error){
+            console.error("Error fetching data for", ticker);
+        }
+
+    }
+
+    async function fetchNews(ticker) {
+        try{
+            const url = `https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=2020-08-15&to=2024-05-02&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`;
+            const nameUrl = `https://finnhub.io/api/v1/search?q=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`;
+
+            const nameResponse = await fetch(nameUrl);
+            const nameData = await nameResponse.json();
+            const firstNameRaw = nameData.result[0].description.split(' ')[0];
+            const companyName = firstNameRaw.charAt(0).toUpperCase() + firstNameRaw.slice(1).toLowerCase();
+            console.log(companyName);
+            const response = await fetch(url);
+            const data = await response.json();
+            let filteredData = data.filter((news) => {
+                return news.summary.toLowerCase().includes(companyName.toLowerCase());
+            }).slice(0,3);
+            if (filteredData.length === 0) {
+                filteredData = data.filter((news) => {
+                    return news.summary.toLowerCase().includes(ticker.toLowerCase());
+                })
+            }
+            console.log(data);
+            console.log(filteredData);
+            displayNews(filteredData);
+        }catch(err){
+            console.error(err);
+        }
+    }
+
+    function displayNerdData(data) {
+        const div = document.getElementById('stockDetails');
+        const logo = document.getElementById('stockLogo');
+        let logoImg = `<img src="${data.logo}" alt="${data.name} logo" style="width: 100px; height: auto;">`;
+        let content = `<h2>Stock Data for ${data.ticker}</h2>`;
+        content += `<p><strong>Exchange:</strong> ${data.exchange}</p>`;
+        content += `<p><strong>Industry:</strong> ${data.finnhubIndustry}</p>`;
+        content += `<p><strong>IPO Date:</strong> ${data.ipo}</p>`;
+        content += `<p><strong>Market Cap:</strong> ${data.marketCapitalization.toLocaleString()} Million USD</p>`;
+        content += `<p><strong>Shares Outstanding:</strong> ${data.shareOutstanding.toLocaleString()} Million Shares</p>`;
+        logo.innerHTML = logoImg;
+        div.innerHTML = content;
+    }
+
+    function displayNews(data) {
+        const div = document.querySelector('.news');
+        div.innerHTML = "<h2 style=\"color: #333333\">News</h2>";
+        data.forEach((news) => {
+            //Check if it image exists
+            const imageHTML = news.image ? `<img src="${news.image}" class="newsImg">` : '';
+            const content = `
+                <div class="newsObj">
+                    ${imageHTML}
+                    <div class="newsText">
+                        <h3 style="color: green">${news.headline}</h3>
+                        <p>${news.summary}</p>
+                        <p><a href="${news.url}" target="_blank">Read more...</a></p>
+                    </div>
+                </div>
+            `;
+            div.innerHTML += content;
+        });
+    }
+
+    fetchStockdata(ticker);
+    fetchNews(ticker);
 
     // Get all profiles
     const profiles = document.querySelectorAll("#team li");
@@ -33,18 +110,6 @@ document.addEventListener("DOMContentLoaded", function () {
             shadow.classList.remove("on");
         });
     }
-    profiles.forEach((profile) => {
-        profile.addEventListener("click", function () {
-            // Find bio section and toggle it to show
-            const bio = this.querySelector(".bio");
-            bio.classList.toggle("show");
-            if (bio.style.display === "block") {
-                bio.style.display = "none";
-            } else {
-                bio.style.display = "block";
-            }
-        });
-    });
 
     if (search) {
         search.addEventListener("keydown", async (event) => {
@@ -59,8 +124,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     search.value = "";
                 }
             } else if (event.key === "Control") {
-                window.location.href = `./singlestock.html`;
+                window.location.href = `./stock.html`;
             }
         });
     }
+
+
 });
