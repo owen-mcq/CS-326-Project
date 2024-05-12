@@ -208,8 +208,8 @@ nav {
 main {
   padding: 20px;
   display: grid;
-  grid-template-columns: 4fr 5fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 3fr 1fr; /* Divides the main area into two columns */
+  grid-template-rows: auto 1fr;
   gap: 20px;
 }
 
