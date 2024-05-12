@@ -167,6 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     async function createChart(ticker) {
+        ticker = ticker.toUpperCase();
         try {
             const data = await fetchData(ticker);
             const chartData = {
