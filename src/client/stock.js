@@ -15,12 +15,22 @@ document.addEventListener("DOMContentLoaded", function () {
             const url = `https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`;
             const response = await fetch(url);
             const data = await response.json();
-            console.log(data);
             displayNerdData(data);
         } catch (error){
             console.error("Error fetching data for", ticker);
         }
 
+    }
+
+    async function fetchEarnings(ticker){
+        try {
+            const url = `https://finnhub.io/api/v1/stock/earnings?symbol=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`;
+            const response = await fetch(url);
+            const data = await response.json();
+            displayEarnings(data);
+        }catch(err){
+            console.error(err);
+        }
     }
 
     async function fetchNews(ticker) {
@@ -34,7 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
             //Get company's first name, capitalize the first lettr
             const firstNameRaw = nameData.result[0].description.split(' ')[0];
             const companyName = firstNameRaw.charAt(0).toUpperCase() + firstNameRaw.slice(1).toLowerCase();
-            console.log(companyName);
             const response = await fetch(url);
             const data = await response.json();
             //Filter all the news articles to find 3 articles with the companies name
@@ -47,8 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     return news.summary.toLowerCase().includes(ticker.toLowerCase());
                 }).slice(0,3);
             }
-            console.log(data);
-            console.log(filteredData);
             displayNews(filteredData);
         }catch(err){
             console.error(err);
@@ -89,6 +96,24 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    function displayEarnings(data) {
+        const div = document.querySelector('.earnings');
+        const mostRecentData = data[0];
+        console.log(data)
+        console.log(mostRecentData);
+        div.innerHTML = "";
+        const content = `
+            <div class="report">
+                <h3>Earnings Report for Q${mostRecentData.quarter} ${mostRecentData.year}</h3>
+                <p><strong>Actual:</strong> ${mostRecentData.actual}</p>
+                <p><strong>Estimate:</strong> ${mostRecentData.estimate}</p>
+                <p><strong>Surprise:</strong> ${mostRecentData.surprise} (${mostRecentData.surprisePercent}%)</p>
+            </div>
+        `
+        div.innerHTML += content;
+    }
+
+    fetchEarnings(ticker);
     fetchStockdata(ticker);
     fetchNews(ticker);
 
@@ -134,6 +159,4 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-
-
 });
