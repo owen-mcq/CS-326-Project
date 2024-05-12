@@ -31,14 +31,14 @@ async function fetchStock(ticker){
 }
 
 async function update() {
-    gridContainer.innerHTML = '<div>Stock</div>' +
+    gridContainer.innerHTML =
         '<div>Ticker</div>' +
         '<div>Price</div>' +
+        '<div>Day Change</div>' +
         '<div>+%/-%</div>' +
-        '<div>52W High</div>' +
-        '<div>52W Low</div>' +
-        '<div>Day Vol</div>' +
-        '<div>Mkt Cap</div>';
+        '<div>Day High</div>' +
+        '<div>Day Low</div>' +
+        '<div>Prev Close</div>';
 
     for (const ticker of tickers){
         const stockData = await fetchStock(ticker);
@@ -46,7 +46,7 @@ async function update() {
 
         const outputObj = {
             symbol: ticker,
-            openPrice: stockData.o,
+            dayChange: stockData.d,
             currentPrice: stockData.c,
             highPrice: stockData.h,
             lowPrice: stockData.l,
@@ -56,12 +56,11 @@ async function update() {
 
         gridContainer.insertAdjacentHTML('beforeend', `
             <div>${outputObj.symbol}</div>
-            <div>${outputObj.symbol}</div>
-            <div>${outputObj.openPrice}</div>
             <div>${outputObj.currentPrice}</div>
+            <div>${outputObj.dayChange}</div>
+            <div>${outputObj.percentChange}%</div>
             <div>${outputObj.highPrice}</div>
             <div>${outputObj.lowPrice}</div>
-            <div>${outputObj.percentChange}%</div>
             <div>${outputObj.previousClose}</div>
         `);
     }
