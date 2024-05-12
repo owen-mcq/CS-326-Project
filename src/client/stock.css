@@ -71,6 +71,7 @@ nav ul li a:hover {
 
 h2 {
     color: green;
+    text-align: center;
 }
 
 h1 {
@@ -249,12 +250,15 @@ section {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.profile img{
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 10px;
+/* Container for the profile which includes both logo and details */
+.profile {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Maintain space between elements */
+    gap: 30px; /* Space between any child elements, i.e., logo and details */
+    padding: 20px; /* Padding around the entire profile for better spacing */
 }
+
 
 .bio{
     display: none;
@@ -273,3 +277,86 @@ section {
     text-align: center;
     margin-top: 10px;
 }
+
+.stock-info {
+    background-color: #333;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.75);
+    padding: 15px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#stockDetails h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #82A67D;
+    font-size: 18px;
+}
+
+#stockDetails p {
+    color: #82A67D;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+#stockLogo {
+    flex-basis: 25%;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+
+#stockDetails {
+    flex-basis: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+#stockLogo img {
+    width: 100px;
+    height: auto;
+}
+
+.newsObj {
+    background-color: #333;
+    color: #82A67D;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.75);
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.newsImg {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+    background-color: #333;
+}
+
+.newsText {
+    flex-grow: 1; /* Allows the text content to fill the remaining space */
+}
+
+.newsText h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #82A67D; /* Green color for the headline, matching metrics */
+    font-size: 18px; /* Sizing consistent with metrics headline */
+}
+
+.newsText p, .newsText a {
+    color: #82A67D; /* Text color matching the metrics box */
+    font-size: 16px; /* Consistent font sizing */
+    line-height: 1.5; /* Readability line height */
+}
+
+.newsText a {
+    text-decoration: none; /* No underline by default */
+}
+
