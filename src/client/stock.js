@@ -8,16 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const addStockBtn = document.querySelector('#addStockBtn');
     const removeStockBtn = document.querySelector('#removeStockBtn');
 
-    if (ticker) {
-        console.log("Ticker received: ", ticker);
-    }
-    //Adds stock in url to db through server
+
     addStockBtn.addEventListener("click", async function() {
         try {
             const response = await fetch(`/stock.html/${encodeURIComponent(ticker)}`, {
                 method: 'POST',
             });
-            if (response.ok) {console.log("Success");}
         } catch (err){
             console.error("Failed to fetch data for:", ticker);
         }
@@ -28,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const response = await fetch(`/stock.html/${encodeURIComponent(ticker)}`, {
                 method: 'DELETE',
             });
-            if (response.ok) {console.log("Success");}
         } catch (err){
             console.error("Failed to fetch data for:", ticker);
         }
@@ -122,8 +117,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function displayEarnings(data) {
         const div = document.querySelector('.earnings');
         const mostRecentData = data[0];
-        console.log(data)
-        console.log(mostRecentData);
         div.innerHTML = "";
         const content = `
             <div class="report">
@@ -245,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
         search.addEventListener("keydown", async (event) => {
             if (event.key === "Enter") {
                 const stock = search.value.trim();
-                if (stock !== "" && isValid(stock)) {
+                if (stock !== "") {
                     window.location.href = `stock.html?ticker=${encodeURIComponent(stock)}`;
                     search.value = "";
                 }

@@ -15,7 +15,6 @@ export async function addStock(name) {
         name: name,
         date: new Date().toISOString(),
       });
-      console.log("Success");
     } else {
       console.error("Error", error);
     }

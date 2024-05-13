@@ -35,16 +35,18 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   async function isValid(ticker){
-      try{
-          const nameUrl = `https://finnhub.io/api/v1/search?q=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`;
-          const response = await fetch(nameUrl);
-          if (!response.ok) {
-              throw new Error(response.statusText);
-          } else{
+      const nameUrl = `https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`;
+      const response = await fetch(nameUrl);
+      if (!response.ok) {
+          return false;
+      } else {
+          const data = await response.json();
+          console.log(data);
+          if (Object.keys(data).length === 0) {
+              return false;
+          } else {
               return true;
           }
-      } catch (err){
-          console.error("Error fetching data for", ticker);
       }
   }
 
@@ -52,9 +54,13 @@ document.addEventListener("DOMContentLoaded", function () {
     search.addEventListener("keydown", async (event) => {
       if (event.key === "Enter") {
         const stock = search.value.trim();
-        if (stock !== "" && isValid(stock)) {
+        console.log(await isValid(stock));
+        if (stock !== "" && await isValid(stock)) {
           window.location.href = `stock.html?ticker=${encodeURIComponent(stock)}`;
           search.value = "";
+        } else{
+            alert("Invalid Stock");
+            search.value = "";
         }
       }
     });
@@ -212,7 +218,6 @@ async function fetchNews() {
       //Get company's first name, capitalize the first lettr
       const firstNameRaw = nameData.result[0].description.split(' ')[0];
       const companyName = firstNameRaw.charAt(0).toUpperCase() + firstNameRaw.slice(1).toLowerCase();
-      console.log(companyName);
       const response = await fetch(url);
       const data = await response.json();
       //Filter all the news articles to find 3 articles with the companies name
@@ -225,8 +230,6 @@ async function fetchNews() {
               return news.summary.toLowerCase().includes(random.toLowerCase());
           }).slice(0,2);
       }
-      console.log(data);
-      console.log(filteredData);
       displayNews(filteredData);
   }catch(err){
       console.error(err);
