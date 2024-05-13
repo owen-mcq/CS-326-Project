@@ -384,3 +384,20 @@ section {
     width: 100% !important;
     height: auto !important;
 }
+
+
+#addStockBtn,
+#removeStockBtn {
+    background-color: green;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+#addStockBtn:hover,
+#removeStockBtn:hover {
+    background-color: #45a049;
+}

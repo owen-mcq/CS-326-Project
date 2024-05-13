@@ -1,6 +1,6 @@
 import PouchDB from "pouchdb";
 
-const db = new PouchDB("src/server/mydatabase");
+const db = new PouchDB("mydatabase");
 
 export async function addStock(name) {
   try {
