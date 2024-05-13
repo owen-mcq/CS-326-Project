@@ -245,18 +245,10 @@ document.addEventListener("DOMContentLoaded", function () {
         search.addEventListener("keydown", async (event) => {
             if (event.key === "Enter") {
                 const stock = search.value.trim();
-                if (stock !== "" && stock !== "clear") {
-                    // await addStock(stock);
-                    // console.log( await getStock(stock));
-                    search.value = "";
-                } else if (stock === "clear") {
-                    // await deleteAllStocks();
+                if (stock !== "" && isValid(stock)) {
+                    window.location.href = `stock.html?ticker=${encodeURIComponent(stock)}`;
                     search.value = "";
                 }
-            } else if (event.key === "Control") {
-                const ticker = search.value.trim();
-                search.value = "";
-                window.location.href = `stock.html?ticker=${encodeURIComponent(ticker)}`;
             }
         });
     }
