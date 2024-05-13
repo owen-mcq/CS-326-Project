@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const side = document.querySelector(".side");
   const shadow = document.querySelector(".shadow");
   const search = document.querySelector(".search [type='text']");
-
   //Brings out the sidebar when the menu button is clicked
   if (btn) {
     btn.addEventListener("click", function () {
@@ -69,7 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // home page watchlist implementation
 const watchList = document.querySelector('.watchList')
-let tickers = ["AAPL","TSLA","NVDA","GOOGL","MSFT","RACE","GE","AMC","GME","AMZN","INTC","META"];
+    let tickers = await getTicker();
+    tickers = tickers.slice(0,4);
 
 async function fetchStock(ticker){
   try{
@@ -135,7 +135,7 @@ async function fetchData(ticker){
     
     const response = await fetch(`https://api.polygon.io/v2/aggs/ticker/${ticker}/range/1/day/${fromDate}/${toDate}?adjusted=true&sort=asc&apiKey=tYHWJdiKKmPmS_7BRZ9Ixii0XHITWPbf`);
     if (!response.ok) {
-      console.error("Failed to fetch data for:", ticker);
+        alert("Too many API calls, please retry shortly");
       return null;
     }
     const responseData = await response.json();
@@ -194,10 +194,25 @@ async function createChart(ticker){
 }
 
 
+async function getTicker(){
+    try {
+        const response = await fetch('/watchlist.html/');
+        const stocks = await response.json();
+        let tickers = stocks.map(stock => stock.name);
+        if (tickers.length === 0) {
+            tickers = ["AAPL","TSLA","NVDA","GOOGL","MSFT","RACE","GE","AMC","GME","AMZN","INTC","META"];
+        }
+        return tickers;
+    } catch (err) {
+        console.log("Failed to get stock names", err);
+    }
+}
+
+
 
 
 async function randomChart() {
-  let tickers = ["AAPL","TSLA","NVDA","GOOGL","MSFT","RACE","GE","AMC","GME","AMZN","INTC","META"];
+  let tickers = await getTicker();
   const randomIndex = Math.floor(Math.random() * tickers.length);
   createChart(tickers[randomIndex]);
 }
@@ -205,7 +220,7 @@ async function randomChart() {
 randomChart();
 
 async function fetchNews() {
-  let tickers = ["AAPL","TSLA","NVDA","GOOGL","MSFT","RACE","GE","AMC","GME","AMZN","INTC","META"];
+    let tickers = await getTicker();
   const randomIndex = Math.floor(Math.random() * tickers.length);
   const random = tickers[randomIndex]
   try{
