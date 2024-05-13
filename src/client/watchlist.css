@@ -5,39 +5,30 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: Arial, sans-serif; 
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(240, 240, 240); 
-    padding: 20px;
-    font-size: 16px; 
-    padding: 20px; 
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
 .grid-container {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(10, auto);  
+    grid-template-rows: repeat(10, auto);
     gap: 10px;
 }
 
 .grid-container div {
-    background-color: rgb(57, 57, 57); 
+    background-color: rgb(57, 57, 57);
     border: 1px solid black;
-    padding: 10px; 
+    padding: 10px;
     color: rgb(217, 217, 217);
     text-align: center;
     font-family: verdana;
     height: 20px;
     box-shadow: 0 1px 2px rgb(0, 0, 0);
-    border-radius: 8px;
-    font-size: 14px;
 }
 
 h1 {
@@ -45,7 +36,6 @@ h1 {
     font-family: verdana;
     text-align: center;
     margin-bottom: 20px;
-    font-size: 24px;
 }
 
 .dropBtn {
@@ -59,13 +49,13 @@ h1 {
     position: absolute;
     top: 20px;
     left: 20px;
-  }
-  
-  .dropBtn:hover {
-    background-color: #45a049;
-  }
+}
 
-  .shadow {
+.dropBtn:hover {
+    background-color: #45a049;
+}
+
+.shadow {
     position: fixed;
     top: 0;
     left: 0;
@@ -76,14 +66,14 @@ h1 {
     visibility: hidden;
     transition: opacity 0.6s ease;
     z-index: 1;
-  }
-  
-  .shadow.on {
+}
+
+.shadow.on {
     opacity: 1;
     visibility: visible;
-  }
+}
 
-  .side {
+.side {
     position: fixed;
     top: 0;
     left: -100%;
@@ -93,13 +83,13 @@ h1 {
     padding: 20px;
     transition: left 0.6s ease;
     z-index: 2;
-  }
-  
-  .side.on {
-    left: 0;
-  }
+}
 
-  nav ul {
+.side.on {
+    left: 0;
+}
+
+nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -109,46 +99,45 @@ h1 {
     justify-content: center;
     border-radius: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  }
-  
-  nav ul li {
+}
+
+nav ul li {
     float: none;
-  }
-  
-  nav ul li a {
+}
+
+nav ul li a {
     display: block;
     color: green;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     border-radius: 15px;
-  }
-  
-  nav ul li a:hover {
+}
+
+nav ul li a:hover {
     background-color: green;
     color: rgb(123, 123, 123);
-  }
+}
 
-  nav {
+nav {
     display: flex;
     align-items: center;
-  }
+}
 
-  .links {
+.links {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    margin: 0; 
-    padding: 20px 10px; 
+    margin: 0;
+    padding: 20px 10px;
     list-style: none;
-    background-color: rgb(28,28,28); 
-    border-radius: 0; 
+    background-color: rgb(28,28,28);
+    border-radius: 0;
     font-family: arial;
-    margin-bottom: 15px;
-  }
-  
-  .links a {
+}
+
+.links a {
     color: #ccc;
     padding: 12px 16px;
     text-decoration: none;
@@ -156,17 +145,16 @@ h1 {
     box-shadow: green 0px 0px 0px 3px;
     margin: 25px 0;
     border-radius: 8px;
-  }
-  
-  .links a:hover {
+}
+
+.links a:hover {
     background-color: #f1f1f1;
     color:rgb(28, 28, 28);
-  }
+}
 
-  header {
+header {
     background-color:rgb(28,28,28);
     padding: 20px;
     border-radius: 10px;
-    margin-bottom: 20px;
 
-  }
+}
