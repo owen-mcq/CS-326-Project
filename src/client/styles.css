@@ -334,3 +334,19 @@ section {
 .newsText a {
   text-decoration: none; /* No underline by default */
 }
+
+#addStockBtn,
+#removeStockBtn {
+  background-color: green;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+#addStockBtn:hover,
+#removeStockBtn:hover {
+  background-color: #45a049;
+}
