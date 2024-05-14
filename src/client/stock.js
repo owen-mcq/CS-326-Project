@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const response = await fetch(`https://api.polygon.io/v2/aggs/ticker/${ticker}/range/1/day/${fromDate}/${toDate}?adjusted=true&sort=asc&apiKey=tYHWJdiKKmPmS_7BRZ9Ixii0XHITWPbf`);
             if (!response.ok) {
-                console.error("Failed to fetch data for:", ticker);
+                alert("Too many API calls, please retry shortly");
                 return null;
             }
             const responseData = await response.json();
@@ -234,12 +234,32 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    async function isValid(ticker){
+        const nameUrl = `https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`;
+        const response = await fetch(nameUrl);
+        if (!response.ok) {
+            return false;
+        } else {
+            const data = await response.json();
+            console.log(data);
+            if (Object.keys(data).length === 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
     if (search) {
         search.addEventListener("keydown", async (event) => {
             if (event.key === "Enter") {
                 const stock = search.value.trim();
-                if (stock !== "") {
+                console.log(await isValid(stock));
+                if (stock !== "" && await isValid(stock)) {
                     window.location.href = `stock.html?ticker=${encodeURIComponent(stock)}`;
+                    search.value = "";
+                } else{
+                    alert("Invalid Stock");
                     search.value = "";
                 }
             }
