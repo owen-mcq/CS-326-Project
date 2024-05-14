@@ -22,6 +22,10 @@ clearBtn.addEventListener("click", async function(){
         const response = await fetch('/watchlist.html/', {
             method: 'DELETE',
         });
+        if(response.ok) {
+            gridContainer.innerHTML = ''; // Clear the grid immediately
+            tickers = []; // Clear the tickers array since all stocks are deleted
+        }
         await setStocks();
         await update();
     } catch (err) {
