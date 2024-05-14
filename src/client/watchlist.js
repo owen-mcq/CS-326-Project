@@ -1,15 +1,15 @@
-
-
-
 const btn = document.querySelector(".dropBtn");
 const side = document.querySelector(".side");
 const shadow = document.querySelector(".shadow");
 const gridContainer = document.querySelector('.grid-container'); // Select the grid container
+const clearBtn = document.querySelector("#clear");
 let tickers = await setStocks();
 
 async function setStocks(){
     try {
-        const response = await fetch('/watchlist.html/');
+        const response = await fetch('/watchlist.html/', {
+            method: 'GET',
+        });
         const stocks = await response.json();
         return stocks.map(stock => stock.name);
     } catch (err) {
@@ -17,11 +17,23 @@ async function setStocks(){
     }
 }
 
+clearBtn.addEventListener("click", async function(){
+    try {
+        const response = await fetch('/watchlist.html/', {
+            method: 'DELETE',
+        });
+        await setStocks();
+        await update();
+    } catch (err) {
+        console.log("Failed to get stock names", err);
+    }
+});
+
 async function fetchStock(ticker){
     try{
         const response = await fetch(`https://finnhub.io/api/v1/quote?symbol=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`);
         if (!response.ok) {
-            console.error("Failed to fetch data for:", ticker);
+            alert("Too many API calls, please retry shortly");
             return null;
         }
         return await response.json();

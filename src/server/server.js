@@ -40,6 +40,15 @@ app.delete('/stock.html/:ticker', async (req, res) => {
     }
 });
 
+app.delete('/watchlist.html/', async (req, res) => {
+    try {
+        await db.deleteAllStocks();
+        res.sendStatus(200);
+    } catch (error) {
+        console.error("Error deleting all:", error);
+    }
+})
+
 app.get('/watchlist.html/', async (req, res) => {
     try {
         const allStocks = await db.getStock();

@@ -158,3 +158,20 @@ header {
     border-radius: 10px;
 
 }
+
+#clear{
+    background-color: green;
+    color: rgb(0, 0, 0);
+    position: absolute;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 15px;
+    top: 20px;
+    left: 120px;
+    height: 24px;
+    border: transparent;
+}
+
+#clear:hover{
+    background-color: #45a049;
+}
