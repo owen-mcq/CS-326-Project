@@ -11,6 +11,7 @@
 
 - To access the data for a specific company enter in that specific company's name into the search bar and press enter.
 
+- Currently the server on the watchlist page does not work for window users.
 - The watchlist page is for looking at the numbers and data for the most recent trading day and navagated to through the menu button on any page.
 - Stocks can be added to the watchlist in the specific company's page by a button, navigated to by entering in that company's ticker into the serach bar.
 
