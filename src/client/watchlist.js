@@ -5,6 +5,13 @@ const gridContainer = document.querySelector('.grid-container'); // Select the g
 const clearBtn = document.querySelector("#clear");
 let tickers = await setStocks();
 
+/**
+ * Sets the stocks in the watchlist by fetching them from the server.
+ * 
+ * @async
+ * @function setStocks
+ * @returns {Promise<Array<string>|undefined>} A Promise that resolves to an array of stock ticker symbols if successful, otherwise undefined.
+ */
 async function setStocks(){
     try {
         const response = await fetch('/watchlist.html/', {
@@ -17,6 +24,11 @@ async function setStocks(){
     }
 }
 
+/**
+ * Clears all stocks from the watchlist and updates the UI accordingly.
+ * 
+ * @async
+ */
 clearBtn.addEventListener("click", async function(){
     try {
         const response = await fetch('/watchlist.html/', {
@@ -33,6 +45,14 @@ clearBtn.addEventListener("click", async function(){
     }
 });
 
+/**
+ * Fetches stock quote data for a given stock ticker symbol from a financial API.
+ * 
+ * @async
+ * @function fetchStock
+ * @param {string} ticker - The stock ticker symbol to fetch data for.
+ * @returns {Promise<object|null>} A Promise that resolves to the stock quote data object if successful, otherwise null.
+ */
 async function fetchStock(ticker){
     try{
         const response = await fetch(`https://finnhub.io/api/v1/quote?symbol=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`);
@@ -47,6 +67,12 @@ async function fetchStock(ticker){
     }
 }
 
+/**
+ * Updates the watchlist grid with the latest stock data including ticker symbol, current price, day change, percentage change, day high, day low, and previous close.
+ * 
+ * @async
+ * @function updateWatchlist
+ */
 async function update() {
     gridContainer.innerHTML =
         '<div>Ticker</div>' +
@@ -86,13 +112,17 @@ async function update() {
 
 update();
 
-//Brings out the sidebar when the menu button is clicked
+/**
+ * Toggles the visibility of the sidebar when the menu button is clicked.
+ */
 btn.addEventListener("click", function(){
     side.classList.toggle("on");
     shadow.classList.toggle("on");
 });
 
-//When the user clicks on any area that is not the side bar it will close the sidebar
+/**
+ * Closes the sidebar when the user clicks on any area that is not the sidebar.
+ */
 shadow.addEventListener("click", function(){
     side.classList.remove("on");
     shadow.classList.remove("on");
