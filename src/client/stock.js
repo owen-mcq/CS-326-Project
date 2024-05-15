@@ -8,7 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const addStockBtn = document.querySelector('#addStockBtn');
     const removeStockBtn = document.querySelector('#removeStockBtn');
 
-
+    /**
+     * Handles adding a stock to the watchlist when the add stock button is clicked.
+     */
     addStockBtn.addEventListener("click", async function() {
         try {
             const response = await fetch(`/stock.html/${encodeURIComponent(ticker)}`, {
@@ -18,7 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error("Failed to fetch data for:", ticker);
         }
     });
-
+    /**
+     * Handles removing a stock from the watchlist when the remove stock button is clicked.
+     */
     removeStockBtn.addEventListener("click", async function () {
         try {
             const response = await fetch(`/stock.html/${encodeURIComponent(ticker)}`, {
@@ -28,6 +32,13 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error("Failed to fetch data for:", ticker);
         }
     });
+    /**
+     * Fetches stock profile data for a given ticker symbol from a financial API and displays it.
+     * 
+     * @async
+     * @function fetchStockdata
+     * @param {string} ticker - The stock ticker symbol to fetch data for.
+     */
     async function fetchStockdata(ticker) {
         try {
             const url = `https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`;
@@ -39,7 +50,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
-
+    /**
+     * Fetches earnings data for a given stock ticker symbol from a financial API and displays it.
+     * 
+     * @async
+     * @function fetchEarnings
+     * @param {string} ticker - The stock ticker symbol to fetch earnings data for.
+     */
     async function fetchEarnings(ticker){
         try {
             const url = `https://finnhub.io/api/v1/stock/earnings?symbol=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`;
@@ -50,7 +67,13 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error(err);
         }
     }
-
+    /**
+     * Fetches news articles related to a specific stock ticker symbol and displays them.
+     * 
+     * @async
+     * @function fetchNews
+     * @param {string} ticker - The stock ticker symbol to fetch news for.
+     */
     async function fetchNews(ticker) {
         try{
             //Get api for name of stock and the news
@@ -79,7 +102,12 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error(err);
         }
     }
-
+    /**
+     * Displays stock profile data on the webpage.
+     * 
+     * @function displayNerdData
+     * @param {object} data - The stock profile data to display.
+     */
     function displayNerdData(data) {
         const div = document.getElementById('stockDetails');
         const logo = document.getElementById('stockLogo');
@@ -93,7 +121,12 @@ document.addEventListener("DOMContentLoaded", function () {
         logo.innerHTML = logoImg;
         div.innerHTML = content;
     }
-
+    /**
+     * Displays news articles on the webpage.
+     * 
+     * @function displayNews
+     * @param {Array<object>} data - An array of news articles to display.
+     */
     function displayNews(data) {
         const div = document.querySelector('.news');
         div.innerHTML = "<h2 style=\"color: #333333\">News</h2>";
@@ -113,7 +146,12 @@ document.addEventListener("DOMContentLoaded", function () {
             div.innerHTML += content;
         });
     }
-
+    /**
+     * Displays earnings data on the webpage.
+     * 
+     * @function displayEarnings
+     * @param {Array<object>} data - An array of earnings data objects.
+     */
     function displayEarnings(data) {
         const div = document.querySelector('.earnings');
         const mostRecentData = data[0];
@@ -128,13 +166,27 @@ document.addEventListener("DOMContentLoaded", function () {
         `
         div.innerHTML += content;
     }
-
+    /**
+     * Formats a date object into a string in the "YYYY-MM-DD" format.
+     * 
+     * @function formatDate
+     * @param {Date} date - The date object to format.
+     * @returns {string} The formatted date string.
+     */
     function formatDate(date) {
         const year = date.getFullYear();
         const month = (date.getMonth() + 1).toString().padStart(2, '0');
         const day = date.getDate().toString().padStart(2, '0');
         return `${year}-${month}-${day}`;
     }
+    /**
+     * Fetches historical stock data for a given ticker symbol within the last month.
+     * 
+     * @async
+     * @function fetchData
+     * @param {string} ticker - The stock ticker symbol to fetch data for.
+     * @returns {Promise<Array<object>|null>} A Promise that resolves to an array of historical stock data objects if successful, otherwise null.
+     */
     async function fetchData(ticker){
         try {
             // Get current date and one month ago
@@ -158,7 +210,13 @@ document.addEventListener("DOMContentLoaded", function () {
             return null;
         }
     }
-
+    /**
+     * Creates a line chart displaying historical stock data for a given ticker symbol within the last month.
+     * 
+     * @async
+     * @function createChart
+     * @param {string} ticker - The stock ticker symbol to create the chart for.
+     */
     async function createChart(ticker) {
         ticker = ticker.toUpperCase();
         try {
@@ -218,7 +276,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const shadow = document.querySelector(".shadow");
     const search = document.querySelector(".search [type='text']");
 
-    //Brings out the sidebar when the menu button is clicked
+    /**
+     * Brings out the sidebar when the menu button is clicked.
+     */
     if (btn) {
         btn.addEventListener("click", function () {
             side.classList.toggle("on");
@@ -226,7 +286,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    //When the user clicks on any area that is not the side bar it will close the sidebar
+    /**
+     * Closes the sidebar when the user clicks on any area that is not the sidebar.
+     */
     if (shadow) {
         shadow.addEventListener("click", function () {
             side.classList.remove("on");
@@ -234,6 +296,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    /**
+     * Checks if a given stock ticker symbol is valid by fetching its profile data from a financial API.
+     * 
+     * @async
+     * @function isValid
+     * @param {string} ticker - The stock ticker symbol to validate.
+     * @returns {Promise<boolean>} A Promise that resolves to true if the ticker symbol is valid, otherwise false.
+     */
     async function isValid(ticker){
         const nameUrl = `https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`;
         const response = await fetch(nameUrl);
@@ -249,7 +319,10 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     }
-
+    /**
+     * Handles the search functionality by redirecting to the stock page if a valid ticker symbol is entered.
+     * @param {KeyboardEvent} event - The keydown event object.
+     */
     if (search) {
         search.addEventListener("keydown", async (event) => {
             if (event.key === "Enter") {
