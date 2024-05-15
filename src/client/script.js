@@ -1,3 +1,11 @@
+/**
+ * Executes the provided callback function when the DOM content is loaded.
+ * 
+ * @callback domContentLoadedCallback
+ * @memberof document
+ * @function
+ * @param {Event} event - The DOMContentLoaded event object.
+ */
 document.addEventListener("DOMContentLoaded", function () {
   // Get all profiles
   const profiles = document.querySelectorAll("#team li");
@@ -5,7 +13,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const side = document.querySelector(".side");
   const shadow = document.querySelector(".shadow");
   const search = document.querySelector(".search [type='text']");
-  //Brings out the sidebar when the menu button is clicked
+  /**
+  * Handles the sidebar functionality by toggling its visibility when the menu button is clicked.
+  * @param {Event} event - The click event object.
+  *
+  */
   if (btn) {
     btn.addEventListener("click", function () {
       side.classList.toggle("on");
@@ -13,7 +25,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  //When the user clicks on any area that is not the side bar it will close the sidebar
+ /**
+ * Closes the sidebar when the shadow overlay is clicked.
+ * 
+ */
   if (shadow) {
     shadow.addEventListener("click", function () {
       side.classList.remove("on");
@@ -22,7 +37,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   profiles.forEach((profile) => {
     profile.addEventListener("click", function () {
-      // Find bio section and toggle it to show
+      /**
+      * Toggles the visibility of a bio section when a profile is clicked.
+      *
+      * @param {Event} event - The click event object.
+      */
       const bio = this.querySelector(".bio");
       bio.classList.toggle("show");
       if (bio.style.display === "block") {
@@ -32,7 +51,14 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
-
+ /**
+ * Checks the validity of a stock ticker symbol by querying a financial API.
+ * 
+ * @async
+ * @function isValid
+ * @param {string} ticker - The stock ticker symbol to validate.
+ * @returns {Promise<boolean>} A Promise that resolves to true if the ticker symbol is valid, otherwise false.
+ */
   async function isValid(ticker){
       const nameUrl = `https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`;
       const response = await fetch(nameUrl);
@@ -48,7 +74,12 @@ document.addEventListener("DOMContentLoaded", function () {
           }
       }
   }
-
+ /**
+ * Handles the keydown event on the search input field to validate and redirect to a stock page if the entered stock ticker is valid.
+ * 
+ * @function handleSearchKeydown
+ * @param {Event} event - The keydown event object.
+ */
   if (search) {
     search.addEventListener("keydown", async (event) => {
       if (event.key === "Enter") {
@@ -66,11 +97,19 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// home page watchlist implementation
+//home page watchlist implementation
 const watchList = document.querySelector('.watchList')
     let tickers = await getTicker();
     tickers = tickers.slice(0,4);
 
+/**
+* Fetches stock data for a given ticker symbol from a financial API.
+* 
+* @async
+* @function fetchStock
+* @param {string} ticker - The stock ticker symbol to fetch data for.
+* @returns {Promise<object|null>} A Promise that resolves to an object containing the stock data if successful, otherwise null.
+*/
 async function fetchStock(ticker){
   try{
       const response = await fetch(`https://finnhub.io/api/v1/quote?symbol=${ticker}&token=corf4r1r01qm70u12bh0corf4r1r01qm70u12bhg`);
@@ -85,6 +124,12 @@ async function fetchStock(ticker){
   }
 }
 
+/**
+* Updates the watch list with stock information including ticker symbol, current price, and percent change.
+* 
+* @async
+* @function update
+*/
 async function update() {
   watchList.innerHTML =
       '<div>Ticker</div>' +
@@ -116,12 +161,27 @@ async function update() {
 update();
 
 //line chart implementation
+/**
+* Formats a date object into a string in the "YYYY-MM-DD" format.
+* 
+* @function formatDate
+* @param {Date} date - The date object to format.
+* @returns {string} The formatted date string.
+*/
 function formatDate(date) {
   const year = date.getFullYear();
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
   const day = date.getDate().toString().padStart(2, '0');
   return `${year}-${month}-${day}`;
 }
+/**
+* Fetches historical stock data for a given ticker symbol within the last month.
+* 
+* @async
+* @function fetchData
+* @param {string} ticker - The stock ticker symbol to fetch data for.
+* @returns {Promise<Array<object>|null>} A Promise that resolves to an array of historical stock data objects if successful, otherwise null.
+*/
 async function fetchData(ticker){
   try {
         // Get current date and one month ago
@@ -145,7 +205,13 @@ async function fetchData(ticker){
     return null;
   }
 }
-
+/**
+* Creates a chart displaying historical stock data for a given ticker symbol within the last month.
+* 
+* @async
+* @function createChart
+* @param {string} ticker - The stock ticker symbol to create the chart for.
+*/
 async function createChart(ticker){
   try {
     const data = await fetchData(ticker);
@@ -193,7 +259,13 @@ async function createChart(ticker){
   }
 }
 
-
+/**
+* Retrieves a list of ticker symbols from the server or uses default symbols if no data is available.
+* 
+* @async
+* @function getTicker
+* @returns {Promise<Array<string>>} A Promise that resolves to an array of ticker symbols.
+*/
 async function getTicker(){
     try {
         const response = await fetch('/watchlist.html/');
@@ -208,9 +280,12 @@ async function getTicker(){
     }
 }
 
-
-
-
+/**
+* Displays a random stock chart from the watchlist.
+* 
+* @async
+* @function randomChart
+*/
 async function randomChart() {
   let tickers = await getTicker();
   const randomIndex = Math.floor(Math.random() * tickers.length);
@@ -219,6 +294,12 @@ async function randomChart() {
 
 randomChart();
 
+/**
+ * Fetches news articles related to a random stock from the watchlist and displays them.
+ * 
+ * @async
+ * @function fetchNews
+ */
 async function fetchNews() {
     let tickers = await getTicker();
   const randomIndex = Math.floor(Math.random() * tickers.length);
@@ -250,7 +331,12 @@ async function fetchNews() {
       console.error(err);
   }
 }
-
+/**
+ * Displays news articles on the webpage.
+ * 
+ * @function displayNews
+ * @param {Array<object>} data - An array of news articles to display.
+ */
 function displayNews(data) {
   const div = document.querySelector('.news');
   div.innerHTML = "<h2 style=\"color: #333333\">News</h2>";
